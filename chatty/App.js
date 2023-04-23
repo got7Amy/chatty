@@ -28,6 +28,8 @@ import Year5CalendarScreen from './src/screens/5YearCalendarScreen';
 import Year5Screen from './src/screens/Year5Screen';
 import ChatScreen from './src/screens/ChatScreen';
 import ParkScreen from './src/screens/ParkScreen';
+import AwkwardScreen from './src/screens/AwkwardScreen';
+import GameScreen from './src/screens/GameScreen';
 
 LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate` with no listeners registered.']);
 
@@ -50,7 +52,9 @@ const switchNavigator = createSwitchNavigator({
         }
       },
       Todo:TodoScreen,
-      Park:ParkScreen
+      Park:ParkScreen,
+      Awkward:AwkwardScreen,
+      Game:GameScreen
     }),
     usefulFlow: createStackNavigator({
       Useful:UsefulScreen,

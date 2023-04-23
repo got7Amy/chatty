@@ -33,7 +33,7 @@ const ReadScreen = ({navigation}) => {
                     <Text style={styles.menuItemText}>Chat</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('ROICalculator')}>
-                    <Ionicons name="cash-outline" size={40} color="black" />
+                    <Ionicons name="home-outline" size={40} color="black" />
                     <Text style={styles.menuItemText}>ROICalculator</Text>
                 </TouchableOpacity>
             </View>

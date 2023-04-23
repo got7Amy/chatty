@@ -22,6 +22,10 @@ const CalculatorScreen = () => {
         let indexOfSign=history.indexOf('-')!==-1?history.indexOf('-'):history.indexOf('+');
         setTotal(parseFloat(history.substring(0,indexOfSign)));
     };
+    const pressClear=()=>{
+        setTotal(0);
+        setNumber('0');
+    };
 
     return (
         <View>
@@ -42,7 +46,7 @@ const CalculatorScreen = () => {
             />
             <Button 
                 title="Clear" 
-                onPress={()=>setTotal(0)}
+                onPress={pressClear}
             />
             <Button 
                 color='black' 

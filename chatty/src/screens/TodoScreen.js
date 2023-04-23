@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet,TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Ionicons } from '@expo/vector-icons';
 
 const TodoScreen = ({ navigation }) => {
   const [todoInput, setTodoInput] = useState('');
@@ -91,7 +92,9 @@ const TodoScreen = ({ navigation }) => {
           {todolist.map((item, index) => (
             <View style={styles.listItem} key={index}>
               <Text>{item}</Text>
-              <Button title="Done" onPress={() => handleMarkDone(index)} />
+              <TouchableOpacity onPress={() => handleMarkDone(index)}>
+                <Ionicons name="checkmark-done-outline" size={18} color="black" />
+              </TouchableOpacity>
             </View>
           ))}
         </View>
@@ -102,7 +105,9 @@ const TodoScreen = ({ navigation }) => {
           {donelist.map((item, index) => (
             <View style={styles.listItem} key={index}>
               <Text>{item}</Text>
-              <Button title="Remove" onPress={() => handleRemoveDone(index)} />
+              <TouchableOpacity onPress={() => handleRemoveDone(index)}>
+                <Ionicons name="trash-outline" size={18} color="black" />
+              </TouchableOpacity>
             </View>
           ))}
         </View>

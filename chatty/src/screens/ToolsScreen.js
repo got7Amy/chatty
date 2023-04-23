@@ -12,7 +12,7 @@ const UsefulScreen = ({navigation}) => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Calendar')}>
                     <Ionicons name="snow-outline" size={40} color="black" />
-                    <Text style={styles.menuItemText}>Todo</Text>
+                    <Text style={styles.menuItemText}>今日代办</Text>
                 </TouchableOpacity>
             </View>
 
@@ -23,7 +23,7 @@ const UsefulScreen = ({navigation}) => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Year5Calendar')}>
                     <Ionicons name="today-outline" size={40} color="black" />
-                    <Text style={styles.menuItemText}>Year5Calendar</Text>
+                    <Text style={styles.menuItemText}>五年日记本</Text>
                 </TouchableOpacity>
             </View>
 
@@ -39,13 +39,13 @@ const UsefulScreen = ({navigation}) => {
             </View>
 
             <View style={styles.menuContainer}>
-                <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Park')}>
-                    <Ionicons name="car-outline" size={40} color="black" />
-                    <Text style={styles.menuItemText}>Park</Text>
+                <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Awkward')}>
+                    <Ionicons name="attach-outline" size={40} color="black" />
+                    <Text style={styles.menuItemText}>Awkward</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('')}>
-                    <Ionicons name="help-circle-outline" size={40} color="black" />
-                    <Text style={styles.menuItemText}>Ads</Text>
+                <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Game')}>
+                    <Ionicons name="game-controller-outline" size={40} color="black" />
+                    <Text style={styles.menuItemText}>Game</Text>
                 </TouchableOpacity>
             </View>
         </View>

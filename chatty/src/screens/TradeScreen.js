@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DropDownPicker from "react-native-dropdown-picker";
+import { Ionicons } from '@expo/vector-icons';
 
 const TradeScreen = ({navigation}) => {
   const [qty, setQty] = useState('');
@@ -30,11 +31,13 @@ const TradeScreen = ({navigation}) => {
 
   const onPressAdd = async () => {
     try {
-      const newTrade = { qty, unitCost, actionValue, reason, date: new Date().toLocaleDateString()};
+      const lastTrade = trades[trades.length - 1];
+      const lastUnitCost = lastTrade ? lastTrade.unitCost : 0;
+      const newTrade = { qty, unitCost, actionValue, reason, date: new Date().toLocaleDateString(), gain: ((unitCost - lastUnitCost) / lastUnitCost) * 100 };
       await AsyncStorage.setItem(navigation.getParam('symbol',''), JSON.stringify([...trades, newTrade]));
       setTrades([...trades, newTrade]);
-      setQty('0');
-      setUnitCost('0');
+      setQty('');
+      setUnitCost('');
       setReason('');
     } catch (err) {
       console.log(err);
@@ -73,6 +76,11 @@ const TradeScreen = ({navigation}) => {
       <Text style={styles.buttonText}>Add</Text>
     </TouchableOpacity>
   </View>
+  <View style={styles.header}>
+    <Text style={[styles.headerText,{flex:1}]}>Qty</Text>
+    <Text style={[styles.headerText,{flex:2}]}>Unit Cost</Text>
+    <Text style={[styles.headerText,{flex:5}]}>Gain</Text>
+  </View>
   <FlatList
     data={trades}
     renderItem={({ item, index }) => {
@@ -82,9 +90,10 @@ const TradeScreen = ({navigation}) => {
           <Text style={styles.itemText}>{item.unitCost}</Text>
           <Text style={styles.itemText}>{item.actionValue}</Text>
           <Text style={styles.itemText}>{item.reason}</Text>
+          <Text style={styles.itemText}>{item.gain?item.gain+'%':null}</Text>
           <Text style={styles.itemText}>{item.date}</Text>
-          <TouchableOpacity style={styles.removeButton} onPress={() => removeTrade(index)}>
-            <Text style={styles.removeButtonText}>Remove</Text>
+          <TouchableOpacity style={{backgroundColor: '#ff6b6b',borderRadius:5}} onPress={() => removeTrade(index)}>
+            <Ionicons name="remove-outline" size={20} color="black" />
           </TouchableOpacity>
         </View>
       );
@@ -138,15 +147,20 @@ const styles = StyleSheet.create({
   },
   itemText: {
     marginRight: 10,
+    flex:1
   },
-  removeButton: {
-    backgroundColor: '#ff6b6b',
-    padding: 10,
-    borderRadius: 5,
+  header: {
+    flexDirection: 'row',
+    backgroundColor: '#ccc',
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  removeButtonText: {
-    color: '#fff',
+  headerText: {
     fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
